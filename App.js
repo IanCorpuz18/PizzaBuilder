@@ -137,7 +137,7 @@ export default class App extends Component{
     ...pizza
   };
 Help=() => {
-  alert(this.state.yeah)
+  alert(this.state.yeah.value+"   " + "   "+this.state.yeah.toppings)
 }
   
   render() {
@@ -170,7 +170,7 @@ Help=() => {
  <View style={{ flexDirection: 'row' }}>
    <CheckBox
      value={this.state.tomato}
-     onChange={() => this.setState({ tomato: !this.state.tomato} )}
+     onChange={() => this.setState({ tomato: !this.state.tomato[this.state.yeah=this.pizzaBuild.vegetable_toppings[0]] } )}
       
    />
    <Text style={{marginTop: 5}}>Roma Tomatoes</Text>
@@ -179,10 +179,10 @@ Help=() => {
 <View style={{ flexDirection: 'column'}}>
  <View style={{ flexDirection: 'row' }}>
    <CheckBox
-     value={this.state.RedTomato}
-     onValueChange={() => this.setState({ RedTomato: !this.state.RedTomato})}
+     value={this.state.RedOnions}
+     onValueChange={() => this.setState({ RedOnions: !this.state.RedOnions})}
    />
-   <Text style={{marginTop: 5}}>Red Tomatoes    </Text>
+   <Text style={{marginTop: 5}}>Red Onions    </Text>
  </View>
 </View>
 
