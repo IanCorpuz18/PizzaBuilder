@@ -130,14 +130,20 @@ const pizza = {
 
 export default class App extends Component{
   state ={
-    size:"",
+    //boolean
     tomatoB: false,
-    tomatoS:"",
     onionB: false,
+    // String
+    size:"",
+    tomatoS:"",
     onionS:"",
+    // array
     VegList: [],
     meatList: [],
-    cheeseList:[]
+    cheeseList:[],
+    // number
+    onionN:0,
+    tomatoN:0,
   };
   pizzaBuild = {
     ...pizza
@@ -155,11 +161,17 @@ export default class App extends Component{
 //  const sum=(this.state.size.value*this.);
 // }
 AddCheck=() => {
-  if (this.state.tomatoB){
-    return;
-  }
-// this.state.tomatoB=true ? this.state.tomatoS=this.pizzaBuild.vegetable_toppings[0]:null
-// this.state.onionB=true ? this.state.onionS=this.pizzaBuild.vegetable_toppings[1]:null
+if (this.state.tomatoB){
+  this.setState({
+    tomatoS: this.veggies[0],
+    tomatoN:this.veggies[0]
+  });
+}
+if (this.state.tomatoB){
+  this.setState({
+    tomatoS: this.veggies[0]
+  });
+}
 }
   
   render() {
@@ -276,7 +288,7 @@ AddCheck=() => {
 </View>
 <View >
  
-<Text>          Toppings:{this.state.tomatoS.toppings}                          Value: {this.state.tomatoS.value} </Text>
+<Text>          Toppings:{this.state.tomatoS.toppings}                          Value:{this.state.tomatoS.value}  </Text>
 </View>
 
 <Text>  </Text>
