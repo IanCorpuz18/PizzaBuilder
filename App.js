@@ -12,7 +12,8 @@ import {
   View,
   Picker,
   CheckBox,
-  Button
+  Button,
+  ScrollView
   
 } from 'react-native';
 
@@ -130,14 +131,35 @@ const pizza = {
 export default class App extends Component{
   state ={
     size:"",
-    tomato: false,
-    yeah:""
+    tomatoB: false,
+    tomatoS:"",
+    onionB: false,
+    onionS:"",
+    VegList: [],
+    meatList: [],
+    cheeseList:[]
   };
   pizzaBuild = {
     ...pizza
   };
-Help=() => {
-  alert(this.state.yeah.value+"   " + "   "+this.state.yeah.toppings)
+  veggies = {
+    ...pizza.vegetable_toppings
+  }
+  meats = {
+    ...pizza.non_vegetable_toppings
+  }
+  cheeseTop = {
+    ...pizza.cheese
+  }
+// getTotal = () =>{
+//  const sum=(this.state.size.value*this.);
+// }
+AddCheck=() => {
+  if (this.state.tomatoB){
+    return;
+  }
+// this.state.tomatoB=true ? this.state.tomatoS=this.pizzaBuild.vegetable_toppings[0]:null
+// this.state.onionB=true ? this.state.onionS=this.pizzaBuild.vegetable_toppings[1]:null
 }
   
   render() {
@@ -145,12 +167,12 @@ Help=() => {
   
     return (
       
-      <View  style={styles.container2}>
-      <Text  style={{fontSize:22, fontWeight:"bold"}}> PIZZA BUILDER </Text>
+      <ScrollView  style={styles.container2}>
+      <Text  style={{fontSize:22, fontWeight:"bold", color:"black"}}> PIZZA BUILDER </Text>
       <View style={styles.container}><View>
      
      </View>
-      <Text  style={styles.label1}>Size</Text>
+      <Text  style={styles.label1} >Size </Text>
       <Text></Text>
       <Picker
       mode="dropdown"
@@ -160,27 +182,27 @@ Help=() => {
    
   <Picker.Item  label="12 Inch" value={this.pizzaBuild.size[0]} />
   <Picker.Item label="18 Inch" value={this.pizzaBuild.size[1]} />
-  <Picker.Item label="22 Inch" value={this.pizzaBuild.size[2]} />
+  <Picker.Item label="24 Inch" value={this.pizzaBuild.size[2]} />
 </Picker>
-<Text> Value= {this.state.size.value}         Inches: {this.state.size.inches} </Text>
  </View>
       
    <Text  style={styles.label1}>Vegetable Toppings</Text>
   <View style={{ flexDirection: 'column'}}>
  <View style={{ flexDirection: 'row' }}>
    <CheckBox
-     value={this.state.tomato}
-     onChange={() => this.setState({ tomato: !this.state.tomato[this.state.yeah=this.pizzaBuild.vegetable_toppings[0]] } )}
+     value={this.state.tomatoB}
+     onValueChange={() => this.setState({ tomatoB: !this.state.tomatoB } )
+    }
       
    />
-   <Text style={{marginTop: 5}}>Roma Tomatoes</Text>
+   <Text style={{marginTop: 5}}>Roma Tomatoes </Text>
  </View>
 </View>
 <View style={{ flexDirection: 'column'}}>
  <View style={{ flexDirection: 'row' }}>
    <CheckBox
-     value={this.state.RedOnions}
-     onValueChange={() => this.setState({ RedOnions: !this.state.RedOnions})}
+     value={this.state.onionB}
+     onValueChange={() => this.setState({ onionB: !this.state.onionB})}
    />
    <Text style={{marginTop: 5}}>Red Onions    </Text>
  </View>
@@ -228,13 +250,60 @@ Help=() => {
    />
    <Text style={{marginTop: 5}}>Feta    </Text>
  </View>
+ <Text>  </Text>
 </View>
 </View>
 <View style={{alignItems:"center"}}>
-<Button title="Send Order" onPress={this.Help}/>
-<Text>  </Text>
+<Button title="Send Order" onPress={this.AddCheck}/>
+<Text>    </Text>
+
 </View>
-      </View>
+<View >
+  <Text style={styles.youOrderedlbl}>You ordered</Text>
+  <Text>   
+  </Text>
+</View>
+<View >
+  <Text style={styles.sizeLbl}>Size</Text>
+</View>
+<View >
+ 
+<Text>              Inches: {this.state.size.inches}                         Value: {this.state.size.value} </Text>
+</View>
+<Text>  </Text>
+<View >
+  <Text style={styles.sizeLbl}>Vegetable Toppings</Text>
+</View>
+<View >
+ 
+<Text>          Toppings:{this.state.tomatoS.toppings}                          Value: {this.state.tomatoS.value} </Text>
+</View>
+
+<Text>  </Text>
+<View >
+  <Text style={styles.sizeLbl}>Non Vegetable Toppings</Text>
+</View>
+<View >
+ 
+<Text>          Toppings:                          Value:  </Text>
+</View>
+
+<Text>  </Text>
+<View >
+  <Text style={styles.sizeLbl}>Cheese</Text>
+</View>
+<View >
+ 
+<Text>                Name:                         Value:  </Text>
+</View>
+<Text>   </Text>
+<View >
+  <Text style={styles.sizeLbl}>TOTAL :   </Text>
+</View>
+<Text>   </Text>
+<Text>   </Text>
+      </ScrollView>
+      
     );
   }
 }
@@ -252,8 +321,6 @@ const styles = StyleSheet.create({
     flex:1,
     padding: 10,
     backgroundColor: "#fff",
-     alignItems: "flex-start",
-     justifyContent: "flex-start",
      flexDirection:"column"
    },
   label1:{
@@ -271,4 +338,20 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+
+  sizeLbl: {
+      fontSize:16 ,
+      fontWeight:"bold",
+      color:"black"
+  },
+  youOrderedlbl: {
+    fontSize:22,
+    fontWeight:"bold",
+    
+},
+vegLbl:{
+  fontSize:16 ,
+      fontWeight:"bold",
+      color:"black"
+}
 });
